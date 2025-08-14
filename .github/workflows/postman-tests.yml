@@ -1,0 +1,26 @@
+name: Postman API Tests
+
+on:
+  push:
+    branches: [ dev ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  postman-collection-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      
+    - name: Install Newman (Postman CLI)
+      run: npm install -g newman
+      
+    - name: Run Postman Collection
+      run: |
+        newman run "postman/collections/Reqres CRUD Collection.json" \
+        --reporters cli,junit \
+        --reporter-junit-export "newman-report.xml"
+      env:
+        POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
