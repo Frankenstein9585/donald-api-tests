@@ -415,7 +415,7 @@
 									"const json = pm.response.json();",
 									"pm.test('Status code is 400', () => pm.response.to.have.status(400));",
 									"pm.test('Status message is Bad Request', () => pm.expect(pm.response.status).to.eql('Bad Request'));",
-									"pm.test('Error message present', () => pm.expect(json.error).to.match(/Missing email or username/i));"
+									"pm.test('Error message present', () => pm.expect(json.error).to.match(/Missing password/i));"
 								],
 								"type": "text/javascript",
 								"packages": {}
